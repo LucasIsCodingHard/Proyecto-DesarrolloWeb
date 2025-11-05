@@ -31,6 +31,11 @@ header nav ul li a{
   font-style: italic;
 }
 
+header nav ul li a:hover {
+  color: #90d5ff; /* celeste */
+  transform: scale(1.05);
+}
+
 header img{
  width: 5.5rem;
  height: 5.5rem;
@@ -264,7 +269,5 @@ p{
 }
 
 /*------------------*/
-/* mis proyectos.   */
+/* mis estudios.    */
 /*------------------*/
-
-main
