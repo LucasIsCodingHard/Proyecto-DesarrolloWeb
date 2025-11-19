@@ -1,0 +1,821 @@
+/*========================================================*
+  VARIABLES GLOBALES
+*========================================================*/
+
+$bg-body: #050608;
+$bg-surface: #0d1117;
+$bg-card: #111827;
+$border-soft: #1f2933;
+
+$text-main: #f9fafb;
+$text-muted: #9ca3af;
+
+$accent: #ffffff;
+
+$font-titulos: "Changa One", sans-serif;
+$font-body: "Source Code Pro", monospace;
+
+/*========================================================*
+  MIXINS
+*========================================================*/
+
+@mixin font-titulo($size) {
+  font-family: $font-titulos;
+  font-weight: 400;
+  font-style: normal;
+  font-size: $size;
+}
+
+@mixin font-body($size) {
+  font-family: $font-body;
+  font-weight: 400;
+  font-style: normal;
+  font-size: $size;
+}
+
+/*========================================================*
+  RESET
+*========================================================*/
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/*========================================================*
+  BASE GLOBAL
+*========================================================*/
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: radial-gradient(circle at center, #111822 0%, #070b0f 70%);
+  color: $text-main;
+  font-family: $font-titulos;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/*========================================================*
+  HEADER
+*========================================================*/
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 3rem;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: #1a2531;
+
+  img {
+    width: 5.5rem;
+    height: 5.5rem;
+  }
+
+  nav {
+    ul {
+      display: inline-flex;
+      gap: 2.5rem;
+      list-style: none;
+
+      li {
+        a {
+          position: relative;
+          padding-bottom: 3px;
+          text-decoration: none;
+          color: $text-main;
+          @include font-titulo(1rem);
+
+          &:hover {
+            color: $accent;
+            transform: scale(1.04);
+          }
+
+          &::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0%;
+            height: 2px;
+            background: $accent;
+            transition: width 0.25s ease;
+          }
+
+          &:hover::after {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+
+/*========================================================*
+  HOME – MAIN / BIOGRAFÍA / HERO
+*========================================================*/
+
+main {
+  padding: 0 1.5rem 4rem 1.5rem;
+}
+
+.biografiaindex {
+  max-width: 1900px;
+  margin: 4rem auto 3rem auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Bloque foto + título */
+
+.presentacion {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 6rem;
+
+  h1 {
+    @include font-titulo(1.8rem);
+    text-align: center;
+    line-height: 1.2;
+    text-transform: uppercase;
+
+    span {
+      color: $accent;
+    }
+  }
+}
+
+/*========================================================*
+  HOME – ACERCA DE MÍ
+*========================================================*/
+
+main h2 {
+  color: $accent;
+  @include font-titulo(1.6rem);
+  text-align: center;
+  margin: 1rem 0 1.5rem 0;
+  text-decoration: underline;
+}
+
+.descripcion {
+  max-width: 1900px;
+  margin: 0 auto 3rem auto;
+  text-align: left;
+  background: rgba(10, 12, 17, 0.85);
+  border-radius: 1rem;
+  padding: 1.8rem 2.2rem;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.65);
+  border: 1px solid $border-soft;
+
+  p {
+    margin-bottom: 1rem;
+    @include font-body(0.9rem);
+    color: $text-muted;
+    line-height: 1.7;
+  }
+}
+
+/*========================================================*
+  HOME – SKILLS
+*========================================================*/
+
+.skills-title {
+  margin-top: 2rem;
+}
+
+.skills {
+  width: 100%;
+  max-width: 1800px;
+  margin: 1.5rem auto 4rem auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 1.5rem;
+}
+
+.skillybarra {
+  background: $bg-card;
+  border-radius: 0.9rem;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.65);
+  border: 1px solid $border-soft;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.8);
+  }
+
+  p {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    @include font-body(0.9rem);
+    color: $text-main;
+
+    span {
+      color: $text-muted;
+      font-size: 0.85rem;
+    }
+  }
+
+  .progress {
+    height: 0.75rem;
+    border-radius: 999px;
+    background-color: #111827;
+    overflow: hidden;
+    border: 1px solid #222838;
+  }
+
+  .progress-bar {
+    background: linear-gradient(to right, $accent, #d1d5db);
+    border-radius: 999px;
+  }
+}
+
+/*========================================================*
+  FOOTER GLOBAL
+*========================================================*/
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+footer {
+  text-align: center;
+  color: $text-main;
+  @include font-titulo(1.2rem);
+  padding: 2rem 1rem 3rem 1rem;
+  border-top: 1px solid $border-soft;
+  background: radial-gradient(circle at bottom, #111827 0%, transparent 60%);
+
+  p {
+    margin-bottom: 1.2rem;
+  }
+
+  img {
+    width: 5.5rem;
+    height: 5.5rem;
+    margin: 0 0.5rem;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #000;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.8);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  img.pulse:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 14px 35px rgba(0,0,0,0.9);
+  }
+}
+
+/*========================================================*
+  BLOBBY ANIMACIÓN PARA FOTO (ORGÁNICO)
+*========================================================*/
+
+.bubble-blob {
+  position: relative;
+  width: 24rem;
+  height: 30rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: blobMorph 8s ease-in-out infinite;
+}
+
+.bubble-blob img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  z-index: 3;
+  border: 3px solid #fff;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.8);
+}
+
+.bubble-blob::before {
+  content: "";
+  position: absolute;
+  inset: -12px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.2), transparent 70%);
+  filter: blur(20px);
+  z-index: 1;
+  animation: blobGlow 4s ease-in-out infinite alternate;
+}
+
+@keyframes blobMorph {
+  0%   { border-radius: 55% 45% 50% 50% / 60% 40% 60% 40%; transform: translateY(0) scale(1); }
+  25%  { border-radius: 50% 60% 45% 55% / 50% 65% 35% 50%; transform: translateY(-6px) scale(1.03); }
+  50%  { border-radius: 60% 50% 55% 45% / 55% 45% 65% 35%; transform: translateY(4px) scale(0.98); }
+  75%  { border-radius: 45% 55% 60% 40% / 60% 30% 60% 50%; transform: translateY(-4px) scale(1.02); }
+  100% { border-radius: 55% 45% 50% 50% / 60% 40% 60% 40%; transform: translateY(0) scale(1); }
+}
+
+@keyframes blobGlow {
+  0%   { opacity: 0.4; transform: scale(1); }
+  50%  { opacity: 0.8; transform: scale(1.05); }
+  100% { opacity: 0.5; transform: scale(0.95); }
+}
+
+/*========================================================*
+  AURORA DE FONDO
+*========================================================*/
+
+.aurora {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+
+  background:
+    radial-gradient(circle at 30% 20%, rgba(2, 9, 7, 0.2), transparent 60%),
+    radial-gradient(circle at 70% 40%, rgba(16, 39, 49, 0.18), transparent 55%),
+    radial-gradient(circle at 50% 80%, rgba(80, 150, 255, 0.17), transparent 60%),
+    radial-gradient(circle at 20% 90%, rgba(0, 100, 255, 0.15), transparent 70%),
+    linear-gradient(180deg, #0b0f17 0%, #050608 100%);
+
+  background-size: 200% 200%;
+  animation: auroraFlow 22s ease-in-out infinite alternate;
+  filter: blur(35px);
+}
+
+@keyframes auroraFlow {
+  0%   { background-position: 0% 0%; }
+  25%  { background-position: 40% 20%; }
+  50%  { background-position: 60% 60%; }
+  75%  { background-position: 30% 80%; }
+  100% { background-position: 0% 40%; }
+}
+
+/*========================================================*
+  ANIMACIONES GENERALES
+*========================================================*/
+
+/* Fade-Up */
+
+.fade-up {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.8s ease forwards;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Título con gradiente animado */
+
+.title-gradient {
+  font-family: $font-titulos;
+  font-size: 2.4rem;
+  font-weight: 800;
+  background: linear-gradient(90deg, #ffffff, #5d5b5b, #ffffff);
+  background-size: 200%;
+  animation: shineText 3s infinite linear;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@keyframes shineText {
+  0% { background-position: 0%; }
+  100% { background-position: 200%; }
+}
+
+/* Título con glow suave */
+
+.title-soft-glow {
+  font-family: $font-titulos;
+  color: #ffffff;
+  font-size: 2.2rem;
+  letter-spacing: 1px;
+  text-shadow:
+    0 0 4px rgba(255,255,255,0.25),
+    0 0 10px rgba(255,255,255,0.15);
+}
+
+/* Typewriter */
+
+.typewriter {
+  font-family: $font-body;
+  font-size: 1rem;
+  color: $text-muted;
+  white-space: pre-wrap;
+  overflow: hidden;
+  border-right: 3px solid $accent;
+  animation: cursorBlink 0.7s infinite;
+  line-height: 1.7;
+}
+
+@keyframes cursorBlink {
+  50% {
+    border-color: transparent;
+  }
+}
+
+/*========================================================*
+  COMPONENTES REUTILIZABLES (CARDS & TAGS)
+*========================================================*/
+
+/* Base de tarjetas reutilizable para @extend */
+.card-base {
+  background: $bg-card;
+  border-radius: 1rem;
+  border: 1px solid $border-soft;
+  box-shadow: 0 12px 35px rgba(0,0,0,0.65);
+}
+
+/* Variantes de tags generadas con @each */
+$study-tag-variants: (
+  primary: #3b82f6,
+  success: #10b981,
+  warning: #f59e0b
+);
+
+@each $name, $color in $study-tag-variants {
+  .study-tag--#{$name} {
+    @include font-body(0.75rem);
+    padding: 0.25rem 0.7rem;
+    border-radius: 999px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background: rgba($color, 0.12);
+    border: 1px solid rgba($color, 0.7);
+    color: lighten($color, 30%);
+    display: inline-block;
+  }
+}
+
+/*========================================================*
+  PÁGINA ESTUDIOS
+*========================================================*/
+
+.mainestudios {
+  max-width: 1100px;
+  margin: 4rem auto 4rem auto;
+  padding: 0 1.5rem;
+}
+
+/* Hero estudios */
+
+.study-hero {
+  text-align: center;
+  margin-bottom: 3rem;
+
+  .study-intro {
+    margin-top: 1.5rem;
+    @include font-body(0.95rem);
+    color: $text-muted;
+    line-height: 1.8;
+
+    span {
+      color: $text-main;
+      font-weight: 600;
+    }
+  }
+}
+
+/* Grid de tarjetas (UTN / Coderhouse) */
+
+.study-grid-section {
+  margin-bottom: 3.5rem;
+}
+
+.study-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.8rem;
+}
+
+.study-card {
+  @extend .card-base;
+  padding: 1.6rem 1.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+
+  .study-card-header {
+    margin-bottom: 0.75rem;
+  }
+
+  h2 {
+    @include font-titulo(1.4rem);
+    color: $text-main;
+    line-height: 1.3;
+  }
+
+  p {
+    @include font-body(0.9rem);
+    color: $text-muted;
+    line-height: 1.7;
+  }
+
+  .study-list {
+    margin-top: 0.4rem;
+    padding-left: 1.2rem;
+
+    li {
+      @include font-body(0.85rem);
+      color: $text-main;
+      margin-bottom: 0.3rem;
+    }
+  }
+}
+
+/* Tags estudios “clásicos” (por si los usás) */
+
+.study-tag {
+  display: inline-block;
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(59, 130, 246, 0.12);
+  border: 1px solid rgba(59, 130, 246, 0.6);
+  @include font-body(0.75rem);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #bfdbfe;
+}
+
+.study-tag.tag-alt {
+  background: rgba(16, 185, 129, 0.12);
+  border-color: rgba(16, 185, 129, 0.7);
+  color: #6ee7b7;
+}
+
+/* Bloques extra (enfoque) */
+
+.study-extra {
+  margin-bottom: 3.5rem;
+
+  .study-extra-grid {
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .study-extra-block {
+    background: rgba(15,23,42,0.95);
+    border-radius: 1rem;
+    border: 1px solid $border-soft;
+    padding: 1.4rem 1.6rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+
+    h3 {
+      @include font-titulo(1.2rem);
+      margin-bottom: 0.6rem;
+      color: $text-main;
+    }
+
+    p {
+      @include font-body(0.9rem);
+      color: $text-muted;
+      line-height: 1.7;
+    }
+  }
+}
+
+/* Timeline */
+
+.study-timeline-section {
+  margin-bottom: 3.5rem;
+}
+
+.study-timeline {
+  margin-top: 2rem;
+  border-left: 2px solid rgba(148,163,184,0.5);
+  padding-left: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
+.timeline-item {
+  position: relative;
+
+  .timeline-dot {
+    position: absolute;
+    left: -1.1rem;
+    top: 0.25rem;
+    width: 0.7rem;
+    height: 0.7rem;
+    border-radius: 50%;
+    background: #38bdf8;
+    box-shadow: 0 0 10px rgba(56,189,248,0.7);
+  }
+
+  .timeline-content {
+    h3 {
+      @include font-titulo(1.05rem);
+      color: $text-main;
+      margin-bottom: 0.3rem;
+    }
+
+    p {
+      @include font-body(0.9rem);
+      color: $text-muted;
+      line-height: 1.6;
+    }
+  }
+}
+
+/* Video sección estudios */
+
+.study-video-section {
+  margin-bottom: 3rem;
+
+  .study-video-text {
+    margin: 1.3rem auto 1.8rem auto;
+    max-width: 800px;
+    @include font-body(0.9rem);
+    color: $text-muted;
+    text-align: center;
+    line-height: 1.7;
+  }
+}
+
+.video-wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.8);
+  border: 1px solid $border-soft;
+
+  iframe {
+    display: block;
+    width: 100%;
+    height: 450px;
+  }
+}
+
+/*========================================================*
+  SECCIÓN PROYECTOS
+*========================================================*/
+
+.main-proyectos {
+  max-width: 1900px;
+  margin-top: 5rem;
+}
+
+/* Texto intro */
+
+.intro-text {
+  max-width: 900px;
+  color: $text-muted;
+  @include font-body(1rem);
+  line-height: 1.7;
+}
+
+/* Cards proyectos */
+
+.project-card {
+  @extend .card-base;
+  overflow: hidden;
+  padding-bottom: 1rem;
+  transition: transform .35s ease, box-shadow .35s ease;
+
+  &:hover {
+    transform: translateY(-12px) scale(1.03);
+    box-shadow: 0 18px 55px rgba(0,0,0,0.8);
+  }
+}
+
+.project-img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.project-body {
+  padding: 1rem 1.5rem;
+}
+
+.project-title {
+  @include font-titulo(1.4rem);
+  color: $accent;
+  margin-bottom: .5rem;
+}
+
+.project-desc {
+  color: $text-muted;
+  @include font-body(.9rem);
+  line-height: 1.6;
+}
+
+/*========================================================*
+  MEDIA QUERIES – TABLET GENERALES
+*========================================================*/
+
+@media (min-width: 768px) {
+  header {
+    padding: 1rem 4.5rem;
+
+    img {
+      width: 7rem;
+      height: 7rem;
+    }
+  }
+
+  .presentacion {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    h1 {
+      text-align: left;
+      font-size: 2rem;
+      max-width: 500px;
+    }
+  }
+
+  .descripcion p {
+    font-size: 1rem;
+  }
+
+  .skills {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 1.8rem;
+    row-gap: 1.8rem;
+  }
+
+  /* Estudios */
+
+  .study-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .study-extra {
+    .study-extra-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  .video-wrapper {
+    iframe {
+      height: 420px;
+    }
+  }
+}
+
+/*========================================================*
+  MEDIA QUERIES – DESKTOP GENERALES
+*========================================================*/
+
+@media (min-width: 1200px) {
+  header {
+    nav {
+      ul {
+        li {
+          a {
+            font-size: 1.1rem;
+          }
+        }
+      }
+    }
+  }
+
+  .presentacion {
+    img {
+      width: 22rem;
+      height: 28rem;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+    }
+  }
+
+  .descripcion {
+    padding: 2rem 2.6rem;
+  }
+
+  .skills {
+    margin-bottom: 5rem;
+  }
+
+  .mainestudios {
+    max-width: 1200px;
+  }
+
+  .video-wrapper {
+    iframe {
+      height: 450px;
+    }
+  }
+}
