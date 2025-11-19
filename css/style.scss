@@ -73,14 +73,14 @@ header {
   background: #1a2531;
 
   img {
-    width: 5.5rem;
-    height: 5.5rem;
+    width: 3.5rem;
+    height: 3.5rem;
   }
 
   nav {
     ul {
       display: inline-flex;
-      gap: 2.5rem;
+      gap: 2rem;
       list-style: none;
 
       li {
@@ -818,3 +818,5 @@ $study-tag-variants: (
     }
   }
 }
+
+
